@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel de Imágenes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="carousel">
+        <button id="prevBtn">&lt;</button>
+        <div class="carousel-content">
+            <img src="imagen1.jpg" alt="Imagen 1">
+            <img src="imagen2.jpg" alt="Imagen 2">
+            <img src="imagen3.jpg" alt="Imagen 3">
+        </div>
+        <button id="nextBtn">&gt;</button>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-content img');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function showSlide(index) {
+            slides.forEach(slide => {
+                slide.style.display = 'none';
+            });
+            slides[index].style.display = 'block';
+        }
+
+        function prevSlide() {
+            slideIndex = (slideIndex === 0) ? slides.length - 1 : slideIndex - 1;
+            showSlide(slideIndex);
+        }
+
+        function nextSlide() {
+            slideIndex = (slideIndex === slides.length - 1) ? 0 : slideIndex + 1;
+            showSlide(slideIndex);
+        }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Mostrar la primera imagen al cargar la página
+        showSlide(slideIndex);
+    </script>
+</body>
+</html>
